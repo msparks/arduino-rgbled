@@ -22,14 +22,14 @@ RGBLED::RGBLED(const int red_pin, const int green_pin, const int blue_pin)
 RGBLED::Intensity RGBLED::channelIntensity(const Channel channel) const
 {
   switch (channel) {
-    case blue_:
+    case kBlue:
       return blue_value_;
       break;
-    case green_:
+    case kGreen:
       return green_value_;
       break;
     default:
-    case red_:
+    case kRed:
       return red_value_;
       break;
   }
@@ -39,16 +39,16 @@ RGBLED::Intensity RGBLED::channelIntensity(const Channel channel) const
 void RGBLED::channelIntensityIs(const Channel channel, const Intensity value)
 {
   switch (channel) {
-    case blue_:
+    case kBlue:
       analogWrite(blue_pin_, value);
       blue_value_ = value;
       break;
-    case green_:
+    case kGreen:
       analogWrite(green_pin_, value);
       green_value_ = value;
       break;
     default:
-    case red_:
+    case kRed:
       analogWrite(red_pin_, value);
       red_value_ = value;
       break;
@@ -58,9 +58,9 @@ void RGBLED::channelIntensityIs(const Channel channel, const Intensity value)
 
 void RGBLED::colorIs(Intensity red, Intensity green, Intensity blue)
 {
-  channelIntensityIs(red_, red);
-  channelIntensityIs(green_, green);
-  channelIntensityIs(blue_, blue);
+  channelIntensityIs(kRed, red);
+  channelIntensityIs(kGreen, green);
+  channelIntensityIs(kBlue, blue);
 }
 
 
@@ -112,10 +112,10 @@ void RGBLED::fadeChannels(const uint8_t channel_mask,
 
 void RGBLED::writeChannels(const uint8_t channel_mask, const Intensity value)
 {
-  if (channel_mask & red_)
-    channelIntensityIs(red_, value);
-  if (channel_mask & green_)
-    channelIntensityIs(green_, value);
-  if (channel_mask & blue_)
-    channelIntensityIs(blue_, value);
+  if (channel_mask & kRed)
+    channelIntensityIs(kRed, value);
+  if (channel_mask & kGreen)
+    channelIntensityIs(kGreen, value);
+  if (channel_mask & kBlue)
+    channelIntensityIs(kBlue, value);
 }

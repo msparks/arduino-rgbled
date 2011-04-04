@@ -40,9 +40,9 @@ class RGBLED {
   typedef uint8_t Intensity;
 
   enum Channel {
-    red_   = 1,
-    green_ = 2,
-    blue_  = 4
+    kRed   = 1,
+    kGreen = 2,
+    kBlue  = 4
   };
 
   /**

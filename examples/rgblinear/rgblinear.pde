@@ -7,9 +7,9 @@
 
 #include <rgbled.h>
 
-static const int kRed = 11;    // red channel pin
-static const int kGreen = 10;  // green channel pin
-static const int kBlue = 9;    // blue channel pin
+static const int kRedPin = 11;    // red channel pin
+static const int kGreenPin = 10;  // green channel pin
+static const int kBluePin = 9;    // blue channel pin
 
 // Brightest value (intensity) to use for any channel.
 static const uint8_t kMaxBrightness = 255;
@@ -18,7 +18,7 @@ static const uint8_t kMaxBrightness = 255;
 static const int kDelay = 10;  // milliseconds
 
 // Create the RGBLED object to control our 3-channel LED.
-RGBLED led(kRed, kGreen, kBlue);
+RGBLED led(kRedPin, kGreenPin, kBluePin);
 
 
 void setup()
@@ -49,7 +49,7 @@ void setup()
   delay(250);
 
   // Off -> red.
-  led.fadeChannel(RGBLED::red_, 0, kMaxBrightness);
+  led.fadeChannel(RGBLED::kRed, 0, kMaxBrightness);
 
   // Set fading delay.
   led.defaultDelayIs(kDelay);
@@ -62,24 +62,24 @@ void loop()
   //   red -> violet -> blue -> cyan -> green -> yellow -> white -> red -> ...
 
   // Red -> red + blue (violet).
-  led.fadeChannel(RGBLED::blue_, 0, kMaxBrightness);
+  led.fadeChannel(RGBLED::kBlue, 0, kMaxBrightness);
 
   // Red + blue -> blue.
-  led.fadeChannel(RGBLED::red_, kMaxBrightness, 0);
+  led.fadeChannel(RGBLED::kRed, kMaxBrightness, 0);
 
   // Blue -> blue + green (cyan).
-  led.fadeChannel(RGBLED::green_, 0, kMaxBrightness);
+  led.fadeChannel(RGBLED::kGreen, 0, kMaxBrightness);
 
   // Blue + green -> green.
-  led.fadeChannel(RGBLED::blue_, kMaxBrightness, 0);
+  led.fadeChannel(RGBLED::kBlue, kMaxBrightness, 0);
 
   // Green -> green + red (yellow).
-  led.fadeChannel(RGBLED::red_, 0, kMaxBrightness);
+  led.fadeChannel(RGBLED::kRed, 0, kMaxBrightness);
 
   // Green + red -> green + red + blue (white).
-  led.fadeChannel(RGBLED::blue_, 0, kMaxBrightness);
+  led.fadeChannel(RGBLED::kBlue, 0, kMaxBrightness);
 
   // White -> red.
-  uint8_t mask = RGBLED::blue_ | RGBLED::green_;
+  uint8_t mask = RGBLED::kBlue | RGBLED::kGreen;
   led.fadeChannels(mask, kMaxBrightness, 0);
 }

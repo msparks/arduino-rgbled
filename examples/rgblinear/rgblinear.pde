@@ -33,7 +33,20 @@ void setup()
   led.colorIs(255, 255, 255);  // white
   delay(1000);
   led.colorIs(0, 0, 0);        // off
-  delay(1000);
+
+  delay(500);
+
+  // Do the same, faster, using the shorthand interface.
+  led.colorIs(0xFF0000);       // red
+  delay(250);                  // 250 ms
+  led.colorIs(0x00FF00);       // green
+  delay(250);
+  led.colorIs(0x0000FF);       // blue
+  delay(250);
+  led.colorIs(0xFFFFFF);       // white
+  delay(250);
+  led.colorIs(0);              // off
+  delay(250);
 
   // Off -> red.
   led.fadeChannel(RGBLED::red_, 0, kMaxBrightness);

@@ -64,6 +64,15 @@ void RGBLED::colorIs(Intensity red, Intensity green, Intensity blue)
 }
 
 
+void RGBLED::colorIs(uint32_t color)
+{
+  Intensity red   = (color & (0xFF0000)) >> 16;
+  Intensity green = (color & (0x00FF00)) >> 8;
+  Intensity blue  = (color & (0x0000FF));
+  colorIs(red, green, blue);
+}
+
+
 void RGBLED::fadeChannel(const Channel channel,
                          const Intensity initial,
                          const Intensity final,

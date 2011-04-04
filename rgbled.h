@@ -86,6 +86,14 @@ class RGBLED {
   void colorIs(Intensity red, Intensity green, Intensity blue);
 
   /**
+   * Convenience interface for colorIs().
+   *
+   * Args:
+   *   color: RGB intensities in 3 least-significant bytes
+   */
+  void colorIs(uint32_t color);
+
+  /**
    * Fade a single channel between two intensities.
    *
    * initial <= final and final < initial are both supported.

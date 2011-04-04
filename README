@@ -1,0 +1,4 @@
+rgbled
+
+This is a library for Arduino. It provides a simple interface for controlling
+an RGB LED array. See examples/rgblinear/.
